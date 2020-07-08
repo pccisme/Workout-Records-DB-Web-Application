@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PG's workout record DB</title>
+</head>
+  <body>
+  <h1>PG's workout record DB</h1>
+    <form method="POST" action="/">
+{#        <label for="fname">Day:</label><br>#}
+{#        <input type="text" name="day"><br>#}
+        <input type="radio" id="chest" name="day" value="Chest Day">
+        <label for="male">Chest Day</label><br>
+        <input type="radio" id="leg" name="day" value="Leg Day">
+        <label for="female">Leg Day</label><br>
+        <input type="radio" id="backandshoulder" name="day" value="Back/Shoulder Day">
+        <label for="other">Back/Shoulder Day</label>
+        <input type="radio" id="other" name="day" value="Other">
+        <label for="other">Other</label><br>
+
+        <label for="fname">Exercise:</label><br>
+        <input type="text" name="exercise"><br>
+
+        <label for="fname">Weight:</label><br>
+        <input type="text" name="weight"><br>
+
+        <label for="fname">Set:</label><br>
+        <input type="text" name="set"><br>
+      <input type="submit" value="Add">
+    </form>
+
+    <h1>Records</h1>
+    <table>
+    {% for record in records %}
+      <tr>
+          <th>{{ record.id }}</th>
+          <th>{{ record.day }}</th>
+          <th>{{ record.exercise }}</th>
+          <th>{{ record.weight }}</th>
+          <th>{{ record.set }}</th>
+      </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>

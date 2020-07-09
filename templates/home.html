@@ -1,45 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PG's workout record DB</title>
-</head>
-  <body>
-  <h1>PG's workout record DB</h1>
-    <form method="POST" action="/">
-{#        <label for="fname">Day:</label><br>#}
-{#        <input type="text" name="day"><br>#}
-        <input type="radio" id="chest" name="day" value="Chest Day">
-        <label for="male">Chest Day</label><br>
-        <input type="radio" id="leg" name="day" value="Leg Day">
-        <label for="female">Leg Day</label><br>
-        <input type="radio" id="backandshoulder" name="day" value="Back/Shoulder Day">
-        <label for="other">Back/Shoulder Day</label>
-        <input type="radio" id="other" name="day" value="Other">
-        <label for="other">Other</label><br>
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <form class="form-group" method="POST" action="/">
+        <label class="form-check-label" for="fname">Category:</label><br>
+        <input class="form-check-input" type="radio" id="chest" name="category" value="Chest">
+        <label class="form-check-label" for="male">Chest</label><br>
+        <input class="form-check-input" type="radio" id="shoulder" name="category" value="Shoulder">
+        <label class="form-check-label" for="male">Shoulder</label><br>
+        <input class="form-check-input" type="radio" id="back" name="category" value="Back">
+        <label class="form-check-label" for="male">Back</label><br>
+        <input class="form-check-input" type="radio" id="leg" name="category" value="Leg">
+        <label class="form-check-label" for="male">Leg</label><br>
+        <input class="form-check-input" type="radio" id="arm" name="category" value="Arm">
+        <label class="form-check-label" for="male">Arm</label><br>
+        <input class="form-check-input" type="radio" id="abs" name="category" value="Abs">
+        <label class="form-check-label" for="male">Abs</label><br>
+        <input class="form-check-input" type="radio" id="cardio" name="category" value="Cardio">
+        <label class="form-check-label" for="male">Cardio</label><br>
+        <input class="form-check-input" type="radio" id="other" name="category" value="Other">
+        <label class="form-check-label" for="male">Other</label><br>
 
-        <label for="fname">Exercise:</label><br>
-        <input type="text" name="exercise"><br>
+        <label class="form-check-label"  for="fname">Exercise:</label><br>
+        <input class="form-check-label" type="text" name="exercise"><br>
 
-        <label for="fname">Weight:</label><br>
-        <input type="text" name="weight"><br>
+        <label class="form-check-label" for="fname">Weight:</label><br>
+        <input class="form-check-label" type="text" name="weight"><br>
 
-        <label for="fname">Set:</label><br>
-        <input type="text" name="set"><br>
-      <input type="submit" value="Add">
+        <label class="form-check-label" for="fname">Sets:</label><br>
+        <input class="form-check-label" type="text" name="sets"><br>
+
+        <label class="form-check-label" for="fname">Reps:</label><br>
+        <input class="form-check-label" type="text" name="reps"><br>
+      <input class="form-check-label" type="submit" value="Add">
     </form>
-
+    <br>
     <h1>Records</h1>
-    <table>
+    <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category</th>
+          <th scope="col">Exercise</th>
+          <th scope="col">Weight</th>
+            <th scope="col">Sets</th>
+            <th scope="col">Reps</th>
+            <th scope="col">Date & Time</th>
+        </tr>
+        </thead>
     {% for record in records %}
-      <tr>
-          <th>{{ record.id }}</th>
-          <th>{{ record.day }}</th>
-          <th>{{ record.exercise }}</th>
-          <th>{{ record.weight }}</th>
-          <th>{{ record.set }}</th>
-      </tr>
+      <tbody>
+        <tr>
+          <th scope="row">{{ record.id }}</th>
+          <td>{{ record.category }}</td>
+          <td>{{ record.exercise }}</td>
+          <td>{{ record.weight }}</td>
+          <td>{{ record.sets }}</td>
+          <td>{{ record.reps }}</td>
+            <td>{{ record.date_created }}</td>
+        </tr>
+      </tbody>
     {% endfor %}
     </table>
-  </body>
-</html>
+</div>
+{% endblock %}
